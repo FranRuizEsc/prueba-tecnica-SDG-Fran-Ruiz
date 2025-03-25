@@ -34,6 +34,9 @@ export class ChartConfigService {
           ],
         },
       },
+      accessibility: {
+        enabled: false,
+      },
       series: [
         {
           type: 'bar',

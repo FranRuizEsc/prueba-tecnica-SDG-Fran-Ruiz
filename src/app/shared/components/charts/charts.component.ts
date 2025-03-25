@@ -1,6 +1,6 @@
-import { ChartConfigService } from '../../../core/services/chart-config.service';
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnChanges } from '@angular/core';
 import Highcharts from 'highcharts';
+import { ChartConfigService } from '../../services/chart-config.service';
 
 @Component({
   selector: 'app-charts',
@@ -8,7 +8,7 @@ import Highcharts from 'highcharts';
   templateUrl: './charts.component.html',
   styleUrl: './charts.component.scss',
 })
-export class ChartsComponent {
+export class ChartsComponent implements OnChanges{
   @Input() chartId: string = 'chart-container';
   @Input() chartType: 'bar' = 'bar';
   @Input() title: string = '';
@@ -17,7 +17,7 @@ export class ChartsComponent {
 
   private chartConfigService = inject(ChartConfigService);
 
-  ngAfterViewInit() {
+  ngOnChanges() {
     console.log(this.data)
     this.renderChart();
   }
