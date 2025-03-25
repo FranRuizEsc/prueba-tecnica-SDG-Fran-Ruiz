@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MainPageComponent } from './main-page.component';
+import { MockProvider } from 'ng-mocks';
+import { CountriesService } from '../../core/services/countries.service';
+import { of } from 'rxjs';
 
 describe('MainPageComponent', () => {
   let component: MainPageComponent;
@@ -8,7 +10,8 @@ describe('MainPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MainPageComponent]
+      imports: [MainPageComponent],
+      providers: [MockProvider(CountriesService, { getPopulationByContinent: () => of({}) })],
     })
     .compileComponents();
 

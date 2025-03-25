@@ -18,7 +18,6 @@ export class ChartsComponent implements OnChanges{
   private chartConfigService = inject(ChartConfigService);
 
   ngOnChanges() {
-    console.log(this.data)
     this.renderChart();
   }
 
@@ -26,8 +25,6 @@ export class ChartsComponent implements OnChanges{
     if (!this.data.length) return;
 
     const chartConfig = this.chartConfigService.getBarChartConfig(this.data, this.title, this.subtitle);
-
     Highcharts.chart(this.chartId, chartConfig);
-
   }
 }

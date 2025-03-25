@@ -20,7 +20,6 @@ export class MainPageComponent implements OnInit {
   ngOnInit() {
     this.countriesService.getPopulationByContinent().subscribe(continentPopulation => {
       this.continentPopulationData = Object.entries(continentPopulation).map(([continent, population]) => ({ name: continent, value: population }))
-      console.log('main', this.continentPopulationData)
     }) 
   }
 }
