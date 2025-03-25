@@ -1,1 +1,11 @@
-<p>main-page works!</p>
+<section class="chart-section">
+  @if(continentPopulationData){
+  <app-charts
+    chartId="continent-population-chart"
+    chartType="bar"
+    [data]="continentPopulationData"
+    title="Continent Population"
+  >
+  </app-charts>
+  }
+</section>
