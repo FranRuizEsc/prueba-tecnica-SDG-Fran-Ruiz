@@ -11,11 +11,21 @@ export class ChartConfigService {
     subtitle?: string
   ): Highcharts.Options {
     return {
-      chart: { type: 'bar', backgroundColor: '#f8f9fa' },
-      title: { text: title, style: { fontSize: '20px', fontWeight: 'bold' } },
+      chart: {
+        type: 'bar',
+        backgroundColor: '#f8f9fa',
+        spacingTop: 10,
+      },
+      title: {
+        text: title,
+        style: { fontSize: '20px', fontWeight: 'bold', padding: '20px' },
+      },
       subtitle: {
         text: subtitle || '',
         style: { fontSize: '12px', color: '#666' },
+      },
+      legend: {
+        enabled: false,
       },
       xAxis: { type: 'category' },
       yAxis: { title: { text: 'Values' } },
