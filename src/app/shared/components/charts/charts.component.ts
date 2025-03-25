@@ -9,11 +9,11 @@ import { ChartConfigService } from '../../services/chart-config.service';
   styleUrl: './charts.component.scss',
 })
 export class ChartsComponent implements OnChanges {
-  @Input() chartId: string = 'chart-container';
-  @Input() chartType: 'bar' = 'bar';
-  @Input() title: string = '';
+  @Input() chartId: string;
+  @Input() chartType: string;
+  @Input() title: string;
   @Input() subtitle?: string;
-  @Input() data: { name: string; value: number }[] = [];
+  @Input() data: { name: string; value: number }[];
 
   private chartConfigService = inject(ChartConfigService);
 

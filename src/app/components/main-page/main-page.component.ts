@@ -13,6 +13,9 @@ export class MainPageComponent implements OnInit {
   private countriesService = inject(CountriesService);
 
   protected continentPopulationData: IContinentPopulation[] = [];
+  protected title = 'Continents Population';
+  protected chartTypeBar = 'bar';
+  protected chartId = 'continent-population-chart';
 
   ngOnInit() {
     this.getContinentPopulationData();

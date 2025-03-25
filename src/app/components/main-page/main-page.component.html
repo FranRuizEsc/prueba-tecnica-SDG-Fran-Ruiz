@@ -1,10 +1,10 @@
 <section class="chart-section">
   @if(continentPopulationData){
   <app-charts
-    chartId="continent-population-chart"
-    chartType="bar"
+    [chartId]="chartId"
+    [chartType]="chartTypeBar"
     [data]="continentPopulationData"
-    title="Continent Population"
+    [title]="title"
   >
   </app-charts>
   }
