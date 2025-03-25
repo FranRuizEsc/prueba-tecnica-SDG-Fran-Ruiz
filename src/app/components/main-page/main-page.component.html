@@ -1,0 +1,11 @@
+<section class="chart-section">
+  @if(continentPopulationData){
+  <app-charts
+    [chartId]="chartId"
+    [chartType]="chartTypeBar"
+    [data]="continentPopulationData"
+    [title]="title"
+  >
+  </app-charts>
+  }
+</section>
