@@ -14,7 +14,6 @@ export class ChartConfigService {
       chart: {
         type: 'bar',
         backgroundColor: '#f8f9fa',
-        spacingTop: 10,
       },
       title: {
         text: title,
