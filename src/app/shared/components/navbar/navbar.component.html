@@ -28,7 +28,9 @@
           <ul class="dropdown-menu">
             @for(continent of continents; track continent) {
             <li>
-              <a class="dropdown-item" href="#">{{ continent }}</a>
+              <a class="dropdown-item" [routerLink]="[continent]">{{
+                continent
+              }}</a>
             </li>
             }
           </ul>
