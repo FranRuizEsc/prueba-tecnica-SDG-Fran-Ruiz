@@ -13,6 +13,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      @if(continents.length > 0) {
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
           <a
@@ -22,16 +23,18 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Select a continet
+            Select a continent
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            @for(continent of continents; track continent) {
+            <li>
+              <a class="dropdown-item" href="#">{{ continent }}</a>
+            </li>
+            }
           </ul>
         </li>
       </ul>
+      }
       <form class="d-flex" role="search">
         <input
           class="form-control me-2"

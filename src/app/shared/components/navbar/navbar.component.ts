@@ -10,9 +10,13 @@ import { CountriesService } from '../../../core/services/countries.service';
 export class NavbarComponent {
   private countriesService = inject(CountriesService);
 
+  protected continents: string[] = [];
+
   ngOnInit() {
     this.countriesService.getPopulationByContinent().subscribe((data) => {
-      console.log(data);
+      data.forEach((element: any) => {
+        this.continents.push(element.name);
+      });
     });
   }
 }

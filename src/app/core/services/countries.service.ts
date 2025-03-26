@@ -3,7 +3,6 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
-import { IContinentPopulationData } from '../model/contient-population.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -19,18 +18,32 @@ export class CountriesService {
     return this.http.get<any[]>(environment.apiUrl + 'region/' + region);
   }
 
-  getPopulationByContinent(): Observable<IContinentPopulationData> {
-    return this.getAllCountries().pipe(
-      map((countries) =>
-        countries.reduce((acc, country) => {
-          country.continents?.forEach((continent: string) => {
-            acc[continent] = acc[continent] || 0;
-            acc[continent] += country.population;
+  getPopulationByContinent(): Observable<any[]> {
+    const continentMap = new Map<string, number>();
+    return this.http
+      .get<any[]>(environment.apiUrl + 'all', {
+        params: { fields: 'population,continents' },
+      })
+      .pipe(
+        map((countries) => {
+          countries.forEach((country) => {
+            if (country.continents && country.population) {
+              country.continents.forEach((continent: any) => {
+                const currentPopulation = continentMap.get(continent) || 0;
+                continentMap.set(
+                  continent,
+                  currentPopulation + country.population
+                );
+              });
+            }
           });
-
-          return acc;
-        }, {} as IContinentPopulationData)
-      )
-    );
+          return Array.from(continentMap.entries())
+            .map(([name, value]) => ({
+              name,
+              value,
+            }))
+            .sort((a, b) => a.name.localeCompare(b.name));
+        })
+      );
   }
 }
