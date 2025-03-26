@@ -6,6 +6,7 @@
       display: flex;
       align-items: center;
       margin-left: 16px;
+      cursor: pointer;
 
       .logo {
         width: 85px;
@@ -13,7 +14,7 @@
 
       .logo-title {
         margin-left: 28px;
-        font-family: "montserrat", sans-serif;
+        font-family: "Montserrat", sans-serif;
         font-size: 48px;
         font-weight: bold;
         letter-spacing: 2.25px;
@@ -24,6 +25,12 @@
         .d {
           color: rgb(138, 194, 74);
         }
+      }
+    }
+
+    .collapse.navbar-collapse {
+      .navbar-nav {
+        margin-right: 36px;
       }
     }
   }

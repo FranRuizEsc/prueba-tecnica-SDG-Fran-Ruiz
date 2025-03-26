@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CountriesService } from '../../../core/services/countries.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
 })
 export class NavbarComponent {
   private countriesService = inject(CountriesService);
+  private router = inject(Router);
 
   protected continents: string[] = [];
 
@@ -19,5 +20,9 @@ export class NavbarComponent {
         this.continents.push(element.name);
       });
     });
+  }
+
+  protected navigateToMain() {
+    this.router.navigate(['/']);
   }
 }
