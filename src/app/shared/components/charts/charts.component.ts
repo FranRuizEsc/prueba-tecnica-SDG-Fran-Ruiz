@@ -1,6 +1,7 @@
 import { Component, inject, Input, OnChanges } from '@angular/core';
 import Highcharts from 'highcharts';
 import { ChartConfigService } from '../../services/chart-config.service';
+import { IPopulation } from '../../../core/model/continent-population.interface';
 
 @Component({
   selector: 'app-charts',
@@ -13,7 +14,7 @@ export class ChartsComponent implements OnChanges {
   @Input() chartType: string;
   @Input() title: string;
   @Input() subtitle?: string;
-  @Input() data: { name: string; value: number }[];
+  @Input() data: IPopulation[];
 
   private chartConfigService = inject(ChartConfigService);
 

@@ -1,8 +1,9 @@
-export interface IContinentPopulation {
+export interface IPopulation {
   name: string;
   value: number;
 }
 
 export interface IContinentPopulationData {
-  [continent: string]: number;
+  population: number;
+  continents: string[];
 }

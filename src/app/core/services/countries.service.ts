@@ -3,7 +3,10 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
-import { IContinentPopulation } from '../model/contient-population.interface';
+import {
+  IContinentPopulationData,
+  IPopulation,
+} from '../model/continent-population.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +14,10 @@ import { IContinentPopulation } from '../model/contient-population.interface';
 export class CountriesService {
   private http = inject(HttpClient);
 
-  getFilteredCountriesInfo(fields: string[]) {
-    return this.http.get<{ population: number; continents: string[] }[]>(
+  getFilteredCountriesInfo(
+    fields: string[]
+  ): Observable<IContinentPopulationData[]> {
+    return this.http.get<IContinentPopulationData[]>(
       environment.apiUrl + 'all',
       {
         params: { fields: fields },
@@ -20,7 +25,16 @@ export class CountriesService {
     );
   }
 
-  getPopulationByContinent(): Observable<IContinentPopulation[]> {
+  getFilteredCountriesByRegion(
+    region: string,
+    fields: string[]
+  ): Observable<any[]> {
+    return this.http.get<any>(environment.apiUrl + 'region/' + region, {
+      params: { fields: fields },
+    });
+  }
+
+  getPopulationByContinent(): Observable<IPopulation[]> {
     return this.getFilteredCountriesInfo(['population', 'continents']).pipe(
       map((countries) => {
         const continentMap = new Map<string, number>();
@@ -40,9 +54,13 @@ export class CountriesService {
     );
   }
 
+  getPatata(region: string, fields: string[]): Observable<any[]> {
+    return this.getFilteredCountriesByRegion(region, fields);
+  }
+
   private transformMApToArray(
     continentMap: Map<string, number>
-  ): IContinentPopulation[] {
+  ): IPopulation[] {
     return Array.from(continentMap, ([name, value]) => ({ name, value })).sort(
       (a, b) => a.name.localeCompare(b.name)
     );

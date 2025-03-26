@@ -1,1 +1,13 @@
-<p>africa works!</p>
+<h1>Africa</h1>
+
+<section class="chart-section">
+  @if(countriesPopulationData){
+  <app-charts
+    [chartId]="chartId"
+    [chartType]="chartTypeBar"
+    [data]="countriesPopulationData"
+    [title]="title"
+  >
+  </app-charts>
+  }
+</section>
