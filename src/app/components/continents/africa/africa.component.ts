@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CountriesService } from '../../../core/services/countries.service';
 import { ChartsComponent } from '../../../shared/components/charts/charts.component';
 import { IPopulation } from '../../../core/model/continent-population.interface';
+import { Options } from 'highcharts';
 
 @Component({
   selector: 'app-africa',
@@ -14,8 +15,9 @@ export class AfricaComponent implements OnInit {
 
   protected countriesPopulationData: IPopulation[] = [];
   protected title = 'Population of African Countries';
-  protected chartTypeBar = 'bar';
+  protected chartTypeBar = 'column';
   protected chartId = 'countries-population-chart';
+  protected chartOptions: Options;
 
   ngOnInit() {
     this.getPopulationData();

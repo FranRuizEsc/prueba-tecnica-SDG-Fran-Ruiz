@@ -1,1 +1,9 @@
-<div [id]="chartId" class="chart-container"></div>
+<div
+  [id]="chartId"
+  class="chart-container"
+  [ngClass]="
+    chartId === 'continent-population-chart'
+      ? 'chart-container-continent'
+      : 'chart-container-countries'
+  "
+></div>
