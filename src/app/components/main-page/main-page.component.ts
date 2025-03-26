@@ -25,12 +25,7 @@ export class MainPageComponent implements OnInit {
     this.countriesService
       .getPopulationByContinent()
       .subscribe((continentPopulation) => {
-        this.continentPopulationData = Object.entries(continentPopulation)
-          .map(([continent, population]) => ({
-            name: continent,
-            value: population,
-          }))
-          .sort((a, b) => a.name.localeCompare(b.name));
+        this.continentPopulationData = continentPopulation;
       });
   }
 }
