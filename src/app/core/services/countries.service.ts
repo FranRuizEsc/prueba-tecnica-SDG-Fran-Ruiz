@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
+import { IContinentPopulation } from '../model/contient-population.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,40 +11,40 @@ import { map } from 'rxjs';
 export class CountriesService {
   private http = inject(HttpClient);
 
-  getAllCountries(): Observable<any[]> {
-    return this.http.get<any[]>(environment.apiUrl + 'all');
+  getFilteredCountriesInfo(fields: string[]) {
+    return this.http.get<{ population: number; continents: string[] }[]>(
+      environment.apiUrl + 'all',
+      {
+        params: { fields: fields },
+      }
+    );
   }
 
-  getCountriesByRegion(region: string) {
-    return this.http.get<any[]>(environment.apiUrl + 'region/' + region);
-  }
+  getPopulationByContinent(): Observable<IContinentPopulation[]> {
+    return this.getFilteredCountriesInfo(['population', 'continents']).pipe(
+      map((countries) => {
+        const continentMap = new Map<string, number>();
 
-  getPopulationByContinent(): Observable<any[]> {
-    const continentMap = new Map<string, number>();
-    return this.http
-      .get<any[]>(environment.apiUrl + 'all', {
-        params: { fields: 'population,continents' },
-      })
-      .pipe(
-        map((countries) => {
-          countries.forEach((country) => {
-            if (country.continents && country.population) {
-              country.continents.forEach((continent: any) => {
-                const currentPopulation = continentMap.get(continent) || 0;
-                continentMap.set(
-                  continent,
-                  currentPopulation + country.population
-                );
-              });
-            }
+        countries.forEach((country) => {
+          country.continents?.forEach((continent) => {
+            const currentPopulation = continentMap.get(continent) ?? 0;
+            continentMap.set(
+              continent,
+              currentPopulation + (country.population || 0)
+            );
           });
-          return Array.from(continentMap.entries())
-            .map(([name, value]) => ({
-              name,
-              value,
-            }))
-            .sort((a, b) => a.name.localeCompare(b.name));
-        })
-      );
+        });
+
+        return this.transformMApToArray(continentMap);
+      })
+    );
+  }
+
+  private transformMApToArray(
+    continentMap: Map<string, number>
+  ): IContinentPopulation[] {
+    return Array.from(continentMap, ([name, value]) => ({ name, value })).sort(
+      (a, b) => a.name.localeCompare(b.name)
+    );
   }
 }
