@@ -1,5 +1,12 @@
-import { Component, inject, Input, OnChanges } from '@angular/core';
-import Highcharts, { Options } from 'highcharts';
+import {
+  Component,
+  ElementRef,
+  inject,
+  Input,
+  OnChanges,
+  ViewChild,
+} from '@angular/core';
+import Highcharts, { Chart, Options } from 'highcharts';
 import { ChartConfigService } from '../../services/chart-config.service';
 import { IPopulation } from '../../../core/model/continent-population.interface';
 import { NgClass } from '@angular/common';
@@ -18,20 +25,21 @@ export class ChartsComponent implements OnChanges {
   @Input() subtitle?: string;
   @Input() data: IPopulation[];
 
+  @ViewChild('chartContainer') chartContainer: ElementRef;
+
   private chartConfigService = inject(ChartConfigService);
+  private chart: Chart;
 
-  ngOnChanges() {
-    console.log('chartId: ', this.chartId);
-    console.log('chartType: ', this.chartType);
-    console.log('title: ', this.title);
-    console.log('subtitle: ', this.subtitle);
-    console.log('data: ', this.data);
-
+  ngAfterViewInit() {
     this.renderChart();
   }
 
+  ngOnChanges() {
+    if (this.chartContainer) this.renderChart();
+  }
+
   private renderChart() {
-    if (!this.data.length) return;
+    if (!this.data.length || !this.chartContainer) return;
 
     const chartConfig = this.chartConfigService.getBarChartConfig(
       this.data,
@@ -39,6 +47,6 @@ export class ChartsComponent implements OnChanges {
       this.chartType,
       this.subtitle
     );
-    Highcharts.chart(this.chartId, chartConfig);
+    Highcharts.chart(this.chartContainer.nativeElement, chartConfig);
   }
 }
