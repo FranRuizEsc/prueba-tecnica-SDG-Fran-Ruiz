@@ -49,12 +49,36 @@ export class CountriesService {
           });
         });
 
-        return this.transformMApToArray(continentMap);
+        return this.transformMapToArray(continentMap);
       })
     );
   }
 
-  private transformMApToArray(
+  getNorthAmericanCountries(): Observable<any[]> {
+    return this.getFilteredCountriesByRegion('Americas', [
+      'name',
+      'subregion',
+      'population',
+    ]).pipe(
+      map((countries) =>
+        countries.filter((country) => country.subregion !== 'South America')
+      )
+    );
+  }
+
+  getSouthAmericanCountries(): Observable<any[]> {
+    return this.getFilteredCountriesByRegion('Americas', [
+      'name',
+      'subregion',
+      'population',
+    ]).pipe(
+      map((countries) =>
+        countries.filter((country) => country.subregion === 'South America')
+      )
+    );
+  }
+
+  private transformMapToArray(
     continentMap: Map<string, number>
   ): IPopulation[] {
     return Array.from(continentMap, ([name, value]) => ({ name, value })).sort(

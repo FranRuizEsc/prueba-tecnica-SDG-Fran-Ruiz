@@ -1,9 +1,7 @@
-import { CountriesService } from './../../../core/services/countries.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AfricaComponent } from './africa.component';
-import { MockProvider } from 'ng-mocks';
-import { of } from 'rxjs';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AfricaComponent', () => {
   let component: AfricaComponent;
@@ -11,12 +9,7 @@ describe('AfricaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AfricaComponent],
-      providers: [
-        MockProvider(CountriesService, {
-          getFilteredCountriesByRegion: () => of([{}]),
-        }),
-      ],
+      imports: [AfricaComponent, HttpClientModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AfricaComponent);
