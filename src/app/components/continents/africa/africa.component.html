@@ -1,12 +1,50 @@
 <h1>Africa</h1>
 
+<section class="filters">
+  <div class="population-range">
+    <h3>Filter by Population Range</h3>
+    <div class="input-group">
+      <label for="minPopulation">Minimum Population:</label>
+      <input
+        type="number"
+        id="minPopulation"
+        [(ngModel)]="minPopulation"
+        placeholder="Min population"
+      />
+    </div>
+    <div class="input-group">
+      <label for="maxPopulation">Maximum Population:</label>
+      <input
+        type="number"
+        id="maxPopulation"
+        [(ngModel)]="maxPopulation"
+        placeholder="Max population"
+      />
+    </div>
+    <button
+      type="button"
+      class="btn btn-outlinesecundary"
+      (click)="filterByPopulation()"
+    >
+      Filter
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="resetFilters()"
+    >
+      Reset Filters
+    </button>
+  </div>
+</section>
+
 <section class="chart-section">
-  @if(countriesPopulationData){
+  @if(filteredCountries){
   <app-charts
     class="charts"
     [chartId]="chartId"
     [chartType]="chartTypeBar"
-    [data]="countriesPopulationData"
+    [data]="filteredCountries"
     [title]="title"
   >
   </app-charts>

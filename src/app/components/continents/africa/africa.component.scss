@@ -1,5 +1,6 @@
 .chart-section {
-  height: calc(100vh - 180px);
+  height: calc(100vh - 400px);
+  overflow: auto;
 
   .charts {
     height: calc(100vh - 200px);

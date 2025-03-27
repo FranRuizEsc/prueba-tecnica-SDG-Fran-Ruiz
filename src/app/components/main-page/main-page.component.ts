@@ -14,7 +14,7 @@ export class MainPageComponent implements OnInit {
 
   protected continentPopulationData: IPopulation[] = [];
   protected title = 'Continents Population';
-  protected chartTypeBar = 'bar';
+  protected chartTypeBar: 'bar' | 'column' | 'line' | 'area' | 'pie' = 'bar';
   protected chartId = 'continent-population-chart';
 
   ngOnInit() {
