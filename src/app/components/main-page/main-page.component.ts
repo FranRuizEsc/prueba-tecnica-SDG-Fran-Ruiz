@@ -1,7 +1,7 @@
 import { ChartsComponent } from './../../shared/components/charts/charts.component';
 import { Component, inject, OnInit } from '@angular/core';
 import { CountriesService } from '../../core/services/countries.service';
-import { IContinentPopulation } from '../../core/model/contient-population.interface';
+import { IPopulation } from '../../core/model/continent-population.interface';
 
 @Component({
   selector: 'main-page',
@@ -12,9 +12,9 @@ import { IContinentPopulation } from '../../core/model/contient-population.inter
 export class MainPageComponent implements OnInit {
   private countriesService = inject(CountriesService);
 
-  protected continentPopulationData: IContinentPopulation[] = [];
+  protected continentPopulationData: IPopulation[] = [];
   protected title = 'Continents Population';
-  protected chartTypeBar = 'bar';
+  protected chartTypeBar: 'bar' | 'column' | 'line' | 'area' | 'pie' = 'bar';
   protected chartId = 'continent-population-chart';
 
   ngOnInit() {

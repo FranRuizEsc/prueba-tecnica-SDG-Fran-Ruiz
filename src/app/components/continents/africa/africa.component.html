@@ -1,1 +1,72 @@
-<p>africa works!</p>
+<h1 class="continent-title">Africa</h1>
+
+<div class="filters-container">
+  <p>Filter by Population Range</p>
+
+  <div class="filter-wrapper">
+    <div class="filter-inputs-container">
+      <div class="input-group">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Minimum:
+        </span>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="minPopulation"
+          aria-label="Minimum Population"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </div>
+      <div class="input-group">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Maximum:</span
+        >
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="maxPopulation"
+          aria-label="Maximum Population"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </div>
+    </div>
+
+    <div class="filter-buttons-container">
+      <button
+        type="button"
+        class="btn btn-outline-success"
+        (click)="filterByPopulation()"
+      >
+        Filter
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        (click)="resetFilters()"
+      >
+        Reset
+      </button>
+    </div>
+  </div>
+</div>
+
+<section class="chart-section">
+  @if(filteredCountries.length > 0) {
+  <app-charts
+    class="charts"
+    [chartId]="chartId"
+    [chartType]="chartTypeBar"
+    [data]="filteredCountries"
+    [title]="title"
+  >
+  </app-charts>
+  } @else {
+  <div class="no-results-container">
+    <div class="icon-wrapper">
+      <i class="bi bi-emoji-frown"></i>
+    </div>
+    <h1 class="main-text">No results were found with the parameters entered</h1>
+    <h2 class="instruction-text">Please enter other values</h2>
+  </div>
+  }
+</section>
