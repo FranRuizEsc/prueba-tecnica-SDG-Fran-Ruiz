@@ -39,7 +39,7 @@ export class ChartsComponent implements OnChanges {
   }
 
   private renderChart() {
-    if (!this.data.length || !this.chartContainer) return;
+    if (!this.data?.length || !this.chartContainer) return;
 
     const chartConfig = this.chartConfigService.getBarChartConfig(
       this.data,
