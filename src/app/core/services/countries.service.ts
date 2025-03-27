@@ -54,10 +54,6 @@ export class CountriesService {
     );
   }
 
-  getPatata(region: string, fields: string[]): Observable<any[]> {
-    return this.getFilteredCountriesByRegion(region, fields);
-  }
-
   private transformMApToArray(
     continentMap: Map<string, number>
   ): IPopulation[] {
