@@ -1,0 +1,49 @@
+<div class="filters-container">
+  <p>Filter by Population Range</p>
+
+  <div class="filter-wrapper">
+    <div class="filter-inputs-container">
+      <div class="input-group">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Minimum:
+        </span>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="minPopulation"
+          aria-label="Minimum Population"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </div>
+      <div class="input-group">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Maximum:</span
+        >
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="maxPopulation"
+          aria-label="Maximum Population"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </div>
+    </div>
+
+    <div class="filter-buttons-container">
+      <button
+        type="button"
+        class="btn btn-outline-success"
+        (click)="filterByPopulation()"
+      >
+        Filter
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        (click)="resetFilters()"
+      >
+        Reset
+      </button>
+    </div>
+  </div>
+</div>

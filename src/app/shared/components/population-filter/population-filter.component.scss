@@ -1,0 +1,33 @@
+.filters-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 36px;
+
+  .filter-wrapper {
+    display: flex;
+    gap: 20px;
+
+    .filter-inputs-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+
+      .input-group-text {
+        width: 112px;
+      }
+
+      .input-group {
+        width: 400px;
+      }
+    }
+
+    .filter-buttons-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 17px;
+    }
+  }
+}

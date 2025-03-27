@@ -1,13 +1,13 @@
-import { FormsModule } from '@angular/forms';
 import { Component, inject, Input } from '@angular/core';
 import { ChartsComponent } from '../charts/charts.component';
 import { Options } from 'highcharts';
 import { IPopulation } from '../../../core/model/continent-population.interface';
 import { CountriesService } from '../../../core/services/countries.service';
+import { PopulationFilterComponent } from '../population-filter/population-filter.component';
 
 @Component({
   selector: 'continent-details',
-  imports: [ChartsComponent, FormsModule],
+  imports: [ChartsComponent, PopulationFilterComponent],
   templateUrl: './continent-details.component.html',
   styleUrl: './continent-details.component.scss',
 })
@@ -21,10 +21,7 @@ export class ContinentDetailsComponent {
   protected chartTypeBar: 'bar' | 'column' | 'line' | 'area' | 'pie' = 'column';
   protected chartId = 'countries-population-chart';
   protected chartOptions: Options;
-
   protected filteredCountries: IPopulation[] = [];
-  protected minPopulation: number | null = null;
-  protected maxPopulation: number | null = null;
 
   ngOnInit() {
     switch (this.continent) {
@@ -39,23 +36,8 @@ export class ContinentDetailsComponent {
     }
   }
 
-  protected filterByPopulation() {
-    if (this.minPopulation === null && this.maxPopulation === null) return;
-
-    this.filteredCountries = this.countriesPopulationData.filter((country) => {
-      const population = country.value;
-      const minValid =
-        this.minPopulation === null || population >= this.minPopulation;
-      const maxValid =
-        this.maxPopulation === null || population <= this.maxPopulation;
-      return minValid && maxValid;
-    });
-  }
-
-  protected resetFilters() {
-    this.minPopulation = null;
-    this.maxPopulation = null;
-    this.filteredCountries = [...this.countriesPopulationData];
+  onFilteredPopulation(event: any[]) {
+    this.filteredCountries = event;
   }
 
   private getPopulationData() {
