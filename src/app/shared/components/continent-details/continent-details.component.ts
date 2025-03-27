@@ -27,27 +27,16 @@ export class ContinentDetailsComponent {
   protected maxPopulation: number | null = null;
 
   ngOnInit() {
-    this.getPopulationData();
-    this.countriesService
-      .getGroupedRegionsContinentsSubregions()
-      .subscribe((data) => {
-        console.log(data);
-      });
-  }
-
-  private getPopulationData() {
-    this.countriesService
-      .getFilteredCountriesByRegion(this.continent, ['name', 'population'])
-      .subscribe((data) => {
-        this.countriesPopulationData = data
-          .map((country) => ({
-            name: country.name.common,
-            value: country.population,
-          }))
-          .sort((a, b) => a.name.localeCompare(b.name));
-
-        this.filteredCountries = [...this.countriesPopulationData];
-      });
+    switch (this.continent) {
+      case 'North America':
+        this.getNorthAmericaPopulation();
+        break;
+      case 'South America':
+        this.getSouthAmericaPopulation();
+        break;
+      default:
+        this.getPopulationData();
+    }
   }
 
   protected filterByPopulation() {
@@ -66,6 +55,37 @@ export class ContinentDetailsComponent {
   protected resetFilters() {
     this.minPopulation = null;
     this.maxPopulation = null;
+    this.filteredCountries = [...this.countriesPopulationData];
+  }
+
+  private getPopulationData() {
+    this.countriesService
+      .getFilteredCountriesByRegion(this.continent, ['name', 'population'])
+      .subscribe((countries) => {
+        this.transformCountriesData(countries);
+      });
+  }
+
+  private getNorthAmericaPopulation() {
+    this.countriesService.getNorthAmericanCountries().subscribe((countries) => {
+      this.transformCountriesData(countries);
+    });
+  }
+
+  private getSouthAmericaPopulation() {
+    this.countriesService.getSouthAmericanCountries().subscribe((countries) => {
+      this.transformCountriesData(countries);
+    });
+  }
+
+  private transformCountriesData(countries: any[]) {
+    this.countriesPopulationData = countries
+      .map((country) => ({
+        name: country.name.common,
+        value: country.population,
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+
     this.filteredCountries = [...this.countriesPopulationData];
   }
 }
