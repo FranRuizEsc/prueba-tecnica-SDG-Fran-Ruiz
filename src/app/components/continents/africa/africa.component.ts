@@ -44,10 +44,7 @@ export class AfricaComponent implements OnInit {
   }
 
   protected filterByPopulation() {
-    if (this.minPopulation === null && this.maxPopulation === null) {
-      console.log('No hay filtros');
-      return;
-    }
+    if (this.minPopulation === null && this.maxPopulation === null) return;
 
     this.filteredCountries = this.countriesPopulationData.filter((country) => {
       const population = country.value;

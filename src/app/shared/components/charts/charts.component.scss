@@ -1,7 +1,6 @@
 :host {
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100%;
 
   .chart-container {
@@ -13,11 +12,13 @@
     background-color: #f8f9fa;
     padding: 16px;
 
-    &.chart-container-continents {
+    &.chart-container-continent {
       height: 520px;
+      margin-top: 20%;
     }
+
     &.chart-container-countries {
-      height: calc(100% - 40px);
+      height: calc(100% - 400px);
     }
   }
 }

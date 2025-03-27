@@ -1,9 +1,103 @@
-.chart-section {
-  height: calc(100vh - 400px);
-  overflow: auto;
+:host {
+  display: block;
+  height: 100%;
 
-  .charts {
-    height: calc(100vh - 200px);
+  .continent-title {
+    display: flex;
+    justify-content: center;
+    margin: 36px;
+    font-weight: bold;
+    color: #9966ff;
+  }
+
+  // ? Filtros en vertical
+  // .filters-container {
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+
+  //   .filter-wrapper {
+  //     display: flex;
+  //     gap: 20px;
+  //     .filter-inputs-container {
+  //       display: flex;
+  //       flex-direction: column;
+
+  //       .input-group-text {
+  //         width: 112px;
+  //       }
+
+  //       .input-group {
+  //         width: 500px;
+  //       }
+  //     }
+
+  //     .filter-buttons-container {
+  //       display: flex;
+  //       flex-direction: column;
+  //       gap: 17px;
+  //     }
+  //   }
+  // }
+
+  .filters-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .filter-wrapper {
+      display: flex;
+      gap: 20px;
+
+      .filter-inputs-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+
+        .input-group-text {
+          width: 112px;
+        }
+
+        .input-group {
+          width: 400px;
+        }
+      }
+
+      .filter-buttons-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 17px;
+      }
+    }
+  }
+
+  .chart-section {
     overflow: auto;
+
+    .charts {
+      height: calc(100vh - 200px);
+      overflow: auto;
+    }
+
+    .no-results-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+
+      .icon-wrapper {
+        font-size: 380px;
+        // color: #9966ff;
+        // color: #8ac24a;
+        color: #00000045;
+      }
+
+      .main-text {
+        font-family: "montserrat", sans-serif;
+      }
+    }
   }
 }
