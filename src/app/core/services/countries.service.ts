@@ -49,7 +49,7 @@ export class CountriesService {
           });
         });
 
-        return this.transformMApToArray(continentMap);
+        return this.transformMapToArray(continentMap);
       })
     );
   }
@@ -78,7 +78,7 @@ export class CountriesService {
     );
   }
 
-  private transformMApToArray(
+  private transformMapToArray(
     continentMap: Map<string, number>
   ): IPopulation[] {
     return Array.from(continentMap, ([name, value]) => ({ name, value })).sort(
