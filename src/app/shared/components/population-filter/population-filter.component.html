@@ -46,4 +46,10 @@
       </button>
     </div>
   </div>
+
+  @if(isNotValidRange()) {
+  <p class="text-danger mt-2">
+    {{ errorValidationMessage }}
+  </p>
+  }
 </div>

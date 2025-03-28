@@ -16,6 +16,8 @@ export class PopulationFilterComponent {
   protected filteredCountries: IPopulation[] = [];
   protected minPopulation: number | null = null;
   protected maxPopulation: number | null = null;
+  protected errorValidationMessage =
+    'The minimum cannot be greater than or equal to the maximum.';
 
   protected filterByPopulation() {
     if (this.minPopulation === null && this.maxPopulation === null) return;
@@ -36,5 +38,13 @@ export class PopulationFilterComponent {
     this.minPopulation = null;
     this.maxPopulation = null;
     this.filteredData.emit([...this.countriesPopulationData]);
+  }
+
+  protected isNotValidRange(): boolean {
+    return (
+      this.minPopulation !== null &&
+      this.maxPopulation !== null &&
+      this.minPopulation >= this.maxPopulation
+    );
   }
 }
