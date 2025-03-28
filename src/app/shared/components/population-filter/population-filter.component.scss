@@ -28,6 +28,16 @@
       flex-direction: row;
       align-items: center;
       gap: 17px;
+
+      .btn {
+        border: 2px solid;
+        font-weight: 600;
+      }
+
+      .disabled-button {
+        border: 2px solid grey;
+        color: grey;
+      }
     }
   }
 }

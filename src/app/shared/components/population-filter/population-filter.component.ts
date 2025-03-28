@@ -47,4 +47,15 @@ export class PopulationFilterComponent {
       this.minPopulation >= this.maxPopulation
     );
   }
+
+  protected shouldDisabledFilterButton(): boolean {
+    if (this.minPopulation !== null && this.maxPopulation !== null) {
+      return this.minPopulation >= this.maxPopulation;
+    }
+    return this.shouldDisabledResetFilterButton();
+  }
+
+  protected shouldDisabledResetFilterButton(): boolean {
+    return this.minPopulation === null && this.maxPopulation === null;
+  }
 }

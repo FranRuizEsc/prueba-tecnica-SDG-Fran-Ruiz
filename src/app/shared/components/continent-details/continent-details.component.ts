@@ -13,7 +13,7 @@ import { PopulationFilterComponent } from '../population-filter/population-filte
 })
 export class ContinentDetailsComponent {
   @Input() titlePopulation: string;
-  @Input() continent: string = '';
+  @Input() continent: string;
 
   private countriesService = inject(CountriesService);
 
@@ -22,8 +22,11 @@ export class ContinentDetailsComponent {
   protected chartId = 'countries-population-chart';
   protected chartOptions: Options;
   protected filteredCountries: IPopulation[] = [];
+  protected pageTitle: string;
 
   ngOnInit() {
+    this.pageTitle = this.continent === 'all' ? 'Continents' : this.continent;
+
     switch (this.continent) {
       case 'North America':
         this.getNorthAmericaPopulation();
