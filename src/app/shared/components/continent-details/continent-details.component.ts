@@ -13,7 +13,7 @@ import { PopulationFilterComponent } from '../population-filter/population-filte
 })
 export class ContinentDetailsComponent {
   @Input() titlePopulation: string;
-  @Input() continent: string;
+  @Input() continent: string = '';
 
   private countriesService = inject(CountriesService);
 
@@ -31,6 +31,9 @@ export class ContinentDetailsComponent {
       case 'South America':
         this.getSouthAmericaPopulation();
         break;
+      case 'all':
+        this.getContinentPopulationData();
+        break;
       default:
         this.getPopulationData();
     }
@@ -38,6 +41,15 @@ export class ContinentDetailsComponent {
 
   onFilteredPopulation(event: any[]) {
     this.filteredCountries = event;
+  }
+
+  private getContinentPopulationData() {
+    this.countriesService.getPopulationByContinent().subscribe((continent) => {
+      this.countriesPopulationData = continent.sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+      this.filteredCountries = [...this.countriesPopulationData];
+    });
   }
 
   private getPopulationData() {

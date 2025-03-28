@@ -1,31 +1,13 @@
-import { ChartsComponent } from './../../shared/components/charts/charts.component';
-import { Component, inject, OnInit } from '@angular/core';
-import { CountriesService } from '../../core/services/countries.service';
-import { IPopulation } from '../../core/model/continent-population.interface';
+import { ContinentDetailsComponent } from '../../shared/components/continent-details/continent-details.component';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'main-page',
-  imports: [ChartsComponent],
+  imports: [ContinentDetailsComponent],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
 })
-export class MainPageComponent implements OnInit {
-  private countriesService = inject(CountriesService);
-
-  protected continentPopulationData: IPopulation[] = [];
-  protected title = 'Continents Population';
-  protected chartTypeBar: 'bar' | 'column' | 'line' | 'area' | 'pie' = 'bar';
-  protected chartId = 'continent-population-chart';
-
-  ngOnInit() {
-    this.getContinentPopulationData();
-  }
-
-  private getContinentPopulationData() {
-    this.countriesService
-      .getPopulationByContinent()
-      .subscribe((continentPopulation) => {
-        this.continentPopulationData = continentPopulation;
-      });
-  }
+export class MainPageComponent {
+  protected titlePopulation = 'Population of African Countries';
+  protected continent = 'all';
 }
