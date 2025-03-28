@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { ContinentDetailsComponent } from '../../../shared/components/continent-details/continent-details.component';
 
 @Component({
   selector: 'app-europe',
-  imports: [],
+  imports: [ContinentDetailsComponent],
   templateUrl: './europe.component.html',
   styleUrl: './europe.component.scss',
 })
-export class EuropeComponent {}
+export class EuropeComponent {
+  protected titlePopulation = 'Population of European Countries';
+  protected continent = 'Europe';
+}
