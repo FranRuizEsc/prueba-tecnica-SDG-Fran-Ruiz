@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IPopulation } from '../../../core/model/continent-population.interface';
 
@@ -9,9 +9,9 @@ import { IPopulation } from '../../../core/model/continent-population.interface'
   styleUrl: './population-filter.component.scss',
 })
 export class PopulationFilterComponent {
-  @Input() countriesPopulationData: any[];
-
   @Output() filteredData = new EventEmitter<any[]>();
+
+  countriesPopulationData = input<any[]>([]);
 
   protected filteredCountries: IPopulation[] = [];
   protected minPopulation: number | null = null;
@@ -22,14 +22,16 @@ export class PopulationFilterComponent {
   protected filterByPopulation() {
     if (this.minPopulation === null && this.maxPopulation === null) return;
 
-    this.filteredCountries = this.countriesPopulationData.filter((country) => {
-      const population = country.value;
-      const minValid =
-        this.minPopulation === null || population >= this.minPopulation;
-      const maxValid =
-        this.maxPopulation === null || population <= this.maxPopulation;
-      return minValid && maxValid;
-    });
+    this.filteredCountries = this.countriesPopulationData().filter(
+      (country) => {
+        const population = country.value;
+        const minValid =
+          this.minPopulation === null || population >= this.minPopulation;
+        const maxValid =
+          this.maxPopulation === null || population <= this.maxPopulation;
+        return minValid && maxValid;
+      }
+    );
 
     this.filteredData.emit(this.filteredCountries);
   }
@@ -37,7 +39,7 @@ export class PopulationFilterComponent {
   protected resetFilters() {
     this.minPopulation = null;
     this.maxPopulation = null;
-    this.filteredData.emit([...this.countriesPopulationData]);
+    this.filteredData.emit([...this.countriesPopulationData()]);
   }
 
   protected isNotValidRange(): boolean {

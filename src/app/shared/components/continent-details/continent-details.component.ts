@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { ChartsComponent } from '../charts/charts.component';
 import { Options } from 'highcharts';
 import { IPopulation } from '../../../core/model/continent-population.interface';
@@ -12,8 +12,8 @@ import { PopulationFilterComponent } from '../population-filter/population-filte
   styleUrl: './continent-details.component.scss',
 })
 export class ContinentDetailsComponent {
-  @Input() titlePopulation: string;
-  @Input() continent: string;
+  continent = input<string>('');
+  titlePopulation = input<string>('');
 
   private countriesService = inject(CountriesService);
 
@@ -25,9 +25,10 @@ export class ContinentDetailsComponent {
   protected pageTitle: string;
 
   ngOnInit() {
-    this.pageTitle = this.continent === 'all' ? 'Continents' : this.continent;
+    this.pageTitle =
+      this.continent() === 'all' ? 'Continents' : this.continent();
 
-    switch (this.continent) {
+    switch (this.continent()) {
       case 'North America':
         this.getNorthAmericaPopulation();
         break;
@@ -57,7 +58,7 @@ export class ContinentDetailsComponent {
 
   private getPopulationData() {
     this.countriesService
-      .getFilteredCountriesByRegion(this.continent, ['name', 'population'])
+      .getFilteredCountriesByRegion(this.continent(), ['name', 'population'])
       .subscribe((countries) => {
         this.transformCountriesData(countries);
       });
