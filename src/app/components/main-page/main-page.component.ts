@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './main-page.component.scss',
 })
 export class MainPageComponent {
-  protected titlePopulation = 'Population of African Countries';
+  protected titlePopulation = 'Population by Continents';
   protected continent = 'all';
 }
