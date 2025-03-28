@@ -23,6 +23,7 @@ export class ContinentDetailsComponent {
   protected chartOptions: Options;
   protected filteredCountries: IPopulation[] = [];
   protected pageTitle: string;
+  protected isLoading = true;
 
   ngOnInit() {
     this.pageTitle =
@@ -53,6 +54,7 @@ export class ContinentDetailsComponent {
         a.name.localeCompare(b.name)
       );
       this.filteredCountries = [...this.countriesPopulationData];
+      this.isLoading = false;
     });
   }
 
@@ -61,18 +63,21 @@ export class ContinentDetailsComponent {
       .getFilteredCountriesByRegion(this.continent(), ['name', 'population'])
       .subscribe((countries) => {
         this.transformCountriesData(countries);
+        this.isLoading = false;
       });
   }
 
   private getNorthAmericaPopulation() {
     this.countriesService.getNorthAmericanCountries().subscribe((countries) => {
       this.transformCountriesData(countries);
+      this.isLoading = false;
     });
   }
 
   private getSouthAmericaPopulation() {
     this.countriesService.getSouthAmericanCountries().subscribe((countries) => {
       this.transformCountriesData(countries);
+      this.isLoading = false;
     });
   }
 

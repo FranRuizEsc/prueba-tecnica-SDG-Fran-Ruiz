@@ -14,13 +14,19 @@
     [title]="titlePopulation()"
   >
   </app-charts>
+  } @else if(isLoading){
+  <div class="d-flex justify-content-center spinner-container">
+    <div class="spinner-border" role="status"></div>
+  </div>
   } @else {
   <div class="no-results-container">
     <div class="icon-wrapper">
       <i class="bi bi-emoji-frown"></i>
     </div>
-    <h1 class="main-text">No results were found with the parameters entered</h1>
-    <h2 class="instruction-text">Please enter other values</h2>
+    <h1 class="not-fount-title">
+      No results were found with the parameters entered
+    </h1>
+    <h2 class="not-found-subtitle">Please enter other values</h2>
   </div>
   }
 </section>

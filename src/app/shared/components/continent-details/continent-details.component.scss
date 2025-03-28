@@ -18,6 +18,15 @@
       overflow: auto;
     }
 
+    .spinner-container {
+      .spinner-border {
+        height: 100px;
+        width: 100px;
+        color: #9966ff;
+        margin-top: 20%;
+      }
+    }
+
     .no-results-container {
       display: flex;
       flex-direction: column;
@@ -27,13 +36,18 @@
 
       .icon-wrapper {
         font-size: 380px;
-        // color: #9966ff;
+        color: #9966ff;
         // color: #8ac24a;
-        color: #00000045;
+        // color: #00000045;
       }
 
-      .main-text {
+      .not-fount-title {
         font-family: "montserrat", sans-serif;
+        text-align: center;
+      }
+
+      .not-found-subtitle {
+        color: #0000008b;
       }
     }
   }
