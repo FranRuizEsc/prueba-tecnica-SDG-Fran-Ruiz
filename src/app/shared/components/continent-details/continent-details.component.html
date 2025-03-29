@@ -4,6 +4,10 @@
   (filteredData)="onFilteredPopulation($event)"
 ></population-filter>
 
+@if(pageTitle === 'Continents'){
+<card-info [dataInput]="filteredCountries"></card-info>
+}
+
 <section class="chart-section">
   @if(filteredCountries.length > 0) {
   <app-charts

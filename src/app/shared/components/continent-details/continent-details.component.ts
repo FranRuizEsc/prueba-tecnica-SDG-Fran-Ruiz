@@ -4,10 +4,11 @@ import { Options } from 'highcharts';
 import { IPopulation } from '../../../core/model/continent-population.interface';
 import { CountriesService } from '../../../core/services/countries.service';
 import { PopulationFilterComponent } from '../population-filter/population-filter.component';
+import { CardInfoComponent } from '../card-info/card-info.component';
 
 @Component({
   selector: 'continent-details',
-  imports: [ChartsComponent, PopulationFilterComponent],
+  imports: [ChartsComponent, PopulationFilterComponent, CardInfoComponent],
   templateUrl: './continent-details.component.html',
   styleUrl: './continent-details.component.scss',
 })

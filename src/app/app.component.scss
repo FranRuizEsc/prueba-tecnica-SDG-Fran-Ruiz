@@ -1,10 +1,11 @@
 .main {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow-y: hidden;
   background-color: #8d8d8d;
 
-  @media (max-width: 1050px) {
+  @media (max-width: 1369px) {
+    overflow-y: auto;
     height: calc(100% - 104px);
   }
 }
