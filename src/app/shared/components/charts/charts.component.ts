@@ -64,7 +64,6 @@ export class ChartsComponent implements OnChanges, AfterViewInit {
   }
 
   private renderChart() {
-    console.log(this.isMobile);
     if (!this.data().length || !this.chartContainer) return;
 
     this.internalChartType = this.isMobile ? 'bar' : 'column';
