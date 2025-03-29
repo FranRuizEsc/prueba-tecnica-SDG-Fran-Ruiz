@@ -1,5 +1,6 @@
+import { Router } from '@angular/router';
 import { IPopulation } from './../../../core/model/continent-population.interface';
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 
 interface IDataWithPhoto {
   name: string;
@@ -16,10 +17,16 @@ interface IDataWithPhoto {
 export class CardInfoComponent {
   dataInput = input<IPopulation[]>([]);
 
+  private router = inject(Router);
+
   protected dataWithPhoto: IDataWithPhoto[];
 
   ngOnChanges() {
     this.addPhotoLinkToData();
+  }
+
+  protected navigateTo(continent: string) {
+    this.router.navigate([`/${continent}`]);
   }
 
   private addPhotoLinkToData() {
