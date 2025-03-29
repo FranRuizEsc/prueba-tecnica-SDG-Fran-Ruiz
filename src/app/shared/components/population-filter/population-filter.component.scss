@@ -22,6 +22,10 @@
       .input-group {
         width: 400px;
       }
+
+      @media (max-width: 1050px) {
+        flex-direction: column;
+      }
     }
 
     .filter-buttons-container {
@@ -37,8 +41,16 @@
       .disabled-button {
         border: 1px solid white;
         color: white;
-        background-color: black;
+        background-color: #8d8d8d;
       }
+
+      @media (max-width: 1050px) {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 1050px) {
+      flex-direction: column;
     }
   }
 }
