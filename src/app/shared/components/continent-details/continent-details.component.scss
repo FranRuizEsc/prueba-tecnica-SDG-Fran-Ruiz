@@ -8,13 +8,11 @@
     margin: 36px;
     font-weight: bold;
     font-size: 80px;
-    color: #9966ff;
-    text-shadow: 5px 5px 4px black;
+    color: white;
 
     @media (max-width: 800px) {
       text-align: center;
       font-size: 48px;
-      text-shadow: 3px 4px 2px black;
     }
   }
 
