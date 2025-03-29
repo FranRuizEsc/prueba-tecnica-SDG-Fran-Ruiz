@@ -3,4 +3,8 @@
   width: 100%;
   overflow: hidden;
   background-color: #8d8d8d;
+
+  @media (max-width: 1050px) {
+    height: calc(100% - 104px);
+  }
 }
