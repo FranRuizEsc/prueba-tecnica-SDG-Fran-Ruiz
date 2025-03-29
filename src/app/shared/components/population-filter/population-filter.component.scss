@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   margin: 36px;
+  color: white;
 
   .filter-wrapper {
     display: flex;
@@ -30,13 +31,13 @@
       gap: 17px;
 
       .btn {
-        border: 2px solid;
-        font-weight: 600;
+        letter-spacing: 1.25px;
       }
 
       .disabled-button {
-        border: 2px solid grey;
-        color: grey;
+        border: 1px solid white;
+        color: white;
+        background-color: black;
       }
     }
   }
