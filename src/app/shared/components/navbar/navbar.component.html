@@ -1,4 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-body-secondary">
+<nav
+  class="navbar bg-dark sticky-top navbar-expand-lg bg-body-tertiary"
+  data-bs-theme="dark"
+>
   <div class="container-fluid">
     <div class="logo-container" (click)="navigateToMain()">
       <img class="logo" src="/logo.png" alt="logo-image" />
@@ -10,38 +13,31 @@
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      @if(continents.length > 0) {
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Select a continent
-          </a>
-          <ul class="dropdown-menu">
-            @for(continent of continents; track continent) {
-            <li>
-              <a class="dropdown-item" [routerLink]="[continent]">{{
-                continent
-              }}</a>
-            </li>
-            }
-          </ul>
-        </li>
-      </ul>
-      }
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <a
+          class="nav-link"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Home</a
+        >
+        @for(continent of continents; track continent) {
+        <a
+          class="nav-link"
+          [routerLink]="[continent]"
+          routerLinkActive="active"
+          >{{ continent }}</a
+        >
+        }
+      </div>
     </div>
   </div>
 </nav>

@@ -1,36 +1,43 @@
-.navbar {
-  height: 110px;
+.navbar .container-fluid {
+  .logo-container {
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
+    cursor: pointer;
 
-  .container-fluid {
-    .logo-container {
-      display: flex;
-      align-items: center;
-      margin-left: 16px;
-      cursor: pointer;
-
-      .logo {
-        width: 85px;
-      }
-
-      .logo-title {
-        margin-left: 28px;
-        font-family: "Montserrat", sans-serif;
-        font-size: 48px;
-        font-weight: bold;
-        letter-spacing: 2.25px;
-        .w {
-          color: #9966ff;
-        }
-
-        .d {
-          color: #8ac24a;
-        }
-      }
+    .logo {
+      width: 85px;
     }
 
-    .collapse.navbar-collapse {
-      .navbar-nav {
-        margin-right: 36px;
+    .logo-title {
+      color: white;
+      margin-left: 28px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 48px;
+      font-weight: bold;
+      letter-spacing: 2.25px;
+      .w {
+        color: #9966ff;
+      }
+
+      .d {
+        color: #8ac24a;
+      }
+    }
+  }
+
+  .collapse.navbar-collapse .navbar-nav {
+    display: flex;
+    margin-right: 36px;
+
+    .nav-link {
+      font-size: 16px;
+      text-align: center;
+      align-content: center;
+
+      &.active {
+        color: #9966ff;
+        font-weight: bold;
       }
     }
   }
