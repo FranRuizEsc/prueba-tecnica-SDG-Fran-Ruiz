@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   input,
@@ -18,7 +19,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   templateUrl: './charts.component.html',
   styleUrl: './charts.component.scss',
 })
-export class ChartsComponent implements OnChanges {
+export class ChartsComponent implements OnChanges, AfterViewInit {
   chartOptions = input<Options | undefined>(undefined);
   chartId = input<string>();
   title = input<string>('');
