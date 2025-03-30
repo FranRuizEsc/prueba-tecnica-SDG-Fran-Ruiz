@@ -32,10 +32,10 @@ Eeste es el enlace a la aplicacion [https://franruizesc.github.io/prueba-tecnica
 ## Ejecución
 
 Para ejecutar la aplicación en modo de desarrollo:
-  
-  ```bash
-  	ng serve
-  ```
+
+```bash
+ng serve
+ ```
 
 La aplicación estará disponible en \`http://localhost:4200/\`.
 
@@ -43,9 +43,9 @@ La aplicación estará disponible en \`http://localhost:4200/\`.
 
 Para ejecutar las pruebas unitarias con Jest:
 
-  ```bash
-  	ng test
-  ```
+```bash
+ng test
+```
 
 Ejemplo de un test:
 
@@ -218,16 +218,16 @@ describe('NavbarComponent', () => {
 * Para desplegar la aplicación he usado angular-cli-ghpages que permite el desplegue en github pages
 	
 * Instalación: 
-	
-	```bash
-		npm i angular-cli-ghpages
-		ng add angular-cli-ghpages
-  ```
+
+```bash
+npm i angular-cli-ghpages
+ng add angular-cli-ghpages
+```
 		
 * Implementación en gh-pages: 
 	
 ```bash
-		ng deploy --base-href://<nombre de usuario>.github.io/<nonbre del proyecto>/
+ng deploy --base-href://<nombre de usuario>.github.io/<nonbre del proyecto>/
 ```
 		
 * Una vez se haya desplegado la aplicación diríjase al repositorio de GitHub y en la sección setting ir a pages y al inicio de la página estará la url de la aplicación.
