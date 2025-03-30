@@ -32,10 +32,10 @@ Eeste es el enlace a la aplicacion [https://franruizesc.github.io/prueba-tecnica
 ## Ejecución
 
 Para ejecutar la aplicación en modo de desarrollo:
-
-	```bash
-	ng serve
-	```
+  
+  ```bash
+  	ng serve
+  ```
 
 La aplicación estará disponible en \`http://localhost:4200/\`.
 
@@ -43,9 +43,9 @@ La aplicación estará disponible en \`http://localhost:4200/\`.
 
 Para ejecutar las pruebas unitarias con Jest:
 
-	```bash
-	ng test
-	```
+  ```bash
+  	ng test
+  ```
 
 Ejemplo de un test:
 
@@ -219,17 +219,27 @@ describe('NavbarComponent', () => {
 	
 * Instalación: 
 	
-		```bash
+	```bash
 		npm i angular-cli-ghpages
 		ng add angular-cli-ghpages
-		```
+  ```
 		
 * Implementación en gh-pages: 
 	
-		```bash
+```bash
 		ng deploy --base-href://<nombre de usuario>.github.io/<nonbre del proyecto>/
-		```
+```
 		
 * Una vez se haya desplegado la aplicación diríjase al repositorio de GitHub y en la sección setting ir a pages y al inicio de la página estará la url de la aplicación.
 		
 	
+## Metodología de ágil para el desarrollo: 
+
+* Para la organización de las tareas durante el desarrollo, utilicé [Jira](https://franruizes.atlassian.net/jira/software/projects/SDG/boards/3).
+
+* En el tablón hay 5 columnas: 
+	- TODO: Es donde creo todas las tareas por hacer durante el desarrollo de la aplicación.
+	- IN PROGRESS: cuando la tarea está en desarrollo.
+	- QA: realizo una prueba de la aplicación para comprobar que todo funciona correctamente después del desarrollo.
+	- READY TO MERGE: una vez pasado QA creo una PR donde reviso el código nuevo implementado para prevenir errores.
+	- DONE: la tarea ya está mergeada con development.
