@@ -9,9 +9,9 @@ import { IPopulation } from '../../../core/model/continent-population.interface'
   styleUrl: './population-filter.component.scss',
 })
 export class PopulationFilterComponent {
-  @Output() filteredData = new EventEmitter<any[]>();
+  @Output() filteredData = new EventEmitter<IPopulation[]>();
 
-  countriesPopulationData = input<any[]>([]);
+  countriesPopulationData = input<IPopulation[]>([]);
 
   protected filteredCountries: IPopulation[] = [];
   protected minPopulation: number | null = null;

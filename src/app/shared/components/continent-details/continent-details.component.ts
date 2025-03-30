@@ -5,6 +5,7 @@ import { IPopulation } from '../../../core/model/continent-population.interface'
 import { CountriesService } from '../../../core/services/countries.service';
 import { PopulationFilterComponent } from '../population-filter/population-filter.component';
 import { CardInfoComponent } from '../card-info/card-info.component';
+import { ICountryByRegionInfo } from '../../../core/model/country.interface';
 
 @Component({
   selector: 'continent-details',
@@ -45,7 +46,7 @@ export class ContinentDetailsComponent {
     }
   }
 
-  onFilteredPopulation(event: any[]) {
+  onFilteredPopulation(event: IPopulation[]) {
     this.filteredCountries = event;
   }
 
@@ -69,20 +70,24 @@ export class ContinentDetailsComponent {
   }
 
   private getNorthAmericaPopulation() {
-    this.countriesService.getNorthAmericanCountries().subscribe((countries) => {
-      this.transformCountriesData(countries);
-      this.isLoading = false;
-    });
+    this.countriesService
+      .getNorthAmericanCountries()
+      .subscribe((countries: ICountryByRegionInfo[]) => {
+        this.transformCountriesData(countries);
+        this.isLoading = false;
+      });
   }
 
   private getSouthAmericaPopulation() {
-    this.countriesService.getSouthAmericanCountries().subscribe((countries) => {
-      this.transformCountriesData(countries);
-      this.isLoading = false;
-    });
+    this.countriesService
+      .getSouthAmericanCountries()
+      .subscribe((countries: ICountryByRegionInfo[]) => {
+        this.transformCountriesData(countries);
+        this.isLoading = false;
+      });
   }
 
-  private transformCountriesData(countries: any[]) {
+  private transformCountriesData(countries: ICountryByRegionInfo[]) {
     this.countriesPopulationData = countries
       .map((country) => ({
         name: country.name.common,

@@ -7,6 +7,7 @@ import {
   IContinentPopulationData,
   IPopulation,
 } from '../model/continent-population.interface';
+import { ICountryByRegionInfo } from '../model/country.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -28,10 +29,13 @@ export class CountriesService {
   getFilteredCountriesByRegion(
     region: string,
     fields: string[]
-  ): Observable<any[]> {
-    return this.http.get<any>(environment.apiUrl + 'region/' + region, {
-      params: { fields: fields },
-    });
+  ): Observable<ICountryByRegionInfo[]> {
+    return this.http.get<ICountryByRegionInfo[]>(
+      environment.apiUrl + 'region/' + region,
+      {
+        params: { fields: fields },
+      }
+    );
   }
 
   getPopulationByContinent(): Observable<IPopulation[]> {
@@ -54,7 +58,7 @@ export class CountriesService {
     );
   }
 
-  getNorthAmericanCountries(): Observable<any[]> {
+  getNorthAmericanCountries(): Observable<ICountryByRegionInfo[]> {
     return this.getFilteredCountriesByRegion('Americas', [
       'name',
       'subregion',
@@ -66,7 +70,7 @@ export class CountriesService {
     );
   }
 
-  getSouthAmericanCountries(): Observable<any[]> {
+  getSouthAmericanCountries(): Observable<ICountryByRegionInfo[]> {
     return this.getFilteredCountriesByRegion('Americas', [
       'name',
       'subregion',
