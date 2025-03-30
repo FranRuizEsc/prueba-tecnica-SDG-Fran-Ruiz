@@ -19,23 +19,23 @@ Eeste es el enlace a la aplicacion [https://franruizesc.github.io/prueba-tecnica
 
 1.  Clona el repositorio:
 
-    \`\`\`bash
+    ```bash
     git clone https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz.git
-    \`\`\`
+    ```
 
 2.  Instala las dependencias:
 
-    \`\`\`bash
+    ```bash
     npm install
-    \`\`\`
+    ```
 
 ## Ejecución
 
 Para ejecutar la aplicación en modo de desarrollo:
 
-\`\`\`bash
-ng serve
-\`\`\`
+	```bash
+	ng serve
+	```
 
 La aplicación estará disponible en \`http://localhost:4200/\`.
 
@@ -43,13 +43,13 @@ La aplicación estará disponible en \`http://localhost:4200/\`.
 
 Para ejecutar las pruebas unitarias con Jest:
 
-\`\`\`bash
-ng test
-\`\`\`
+	```bash
+	ng test
+	```
 
 Ejemplo de un test:
 
-\`\`\`typescript
+```typescript
 // src/app/components/main-page/main-page.spec.ts
 
 import { provideHttpClient } from '@angular/common/http';
@@ -83,11 +83,11 @@ describe('NavbarComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-\`\`\`
+```
 
 ## Estructura del Proyecto
 
-\`\`\`
+```
 	src
 	 ┣ app
 	 ┃ ┣ components
@@ -189,22 +189,22 @@ describe('NavbarComponent', () => {
 	 ┣ index.html
 	 ┣ main.ts
 	 ┗ styles.scss
-\`\`\`
+```
 
 ## El proyecto se compone de varias carpetas: 
-	-	**`components`**: En esta carpeta se encuentran los componentes principales de la aplicación:
-		- 	**`continents`**: Contiene las vistas de cada continente que se muestran al navegar a ellas a trabes del menú o de las miniaturas de main-page.
-		-	**`main-page`**: Es la página principal del proyecto.
+* components En esta carpeta se encuentran los componentes principales de la aplicación:
+	- continents: Contiene las vistas de cada continente que se muestran al navegar a ellas a trabes del menú o de las miniaturas de main-page.
+	- main-page Es la página principal del proyecto.
+
+* core: Contiene los servicios y modelos principales de la app: 
+	- models: Son las interfaces usadas.
+	- services: Contiene el servicio en el que se hacen las peticiones a la API y maneja los datos.
 	
-	-	**`core`**: Contiene los servicios y modelos principales de la app: 
-		-	**`models`**: Son las interfaces usadas.
-		- 	**`services`**: Contiene el servicio en el que se hacen las peticiones a la API y maneja los datos.
+*  shared: Es la carpeta en la que se encuentran los elementos comunes para los componentes principales y poderlos reutilizar sin repetir código.
+	- components: Son los componentes comunes donde se muestran los datos que se utilizan en los componentes principales.
+	- services: Aquí está el chart-config que se encarga de la configuración de las charts.
 	
-	-	**`shared`**: Es la carpeta en la que se encuentran los elementos comunes para los componentes principales y poderlos reutilizar sin repetir código.
-		-	**`components`**: Son los componentes comunes donde se muestran los datos que se utilizan en los componentes principales.
-		-	**`services`**: Aquí está el chart-config que se encarga de la configuración de las charts.
-	
-	-	**`assets`**: Contiene las imágenes utilizadas en la aplicación.
+*  assets: Contiene las imágenes utilizadas en la aplicación.
 	
 	
 ## Funcionalidades Destacadas
@@ -215,19 +215,21 @@ describe('NavbarComponent', () => {
 
 ## Despliegue
 
-	Para desplegar la aplicación he usado angular-cli-ghpages que permite el desplegue en github pages
+* Para desplegar la aplicación he usado angular-cli-ghpages que permite el desplegue en github pages
 	
-	Instalación: 
+* Instalación: 
 	
-		\`\`\`bash
+		```bash
 		npm i angular-cli-ghpages
 		ng add angular-cli-ghpages
-		\`\`\`
+		```
 		
-	Implementación en gh-pages: 
+* Implementación en gh-pages: 
 	
-		\`\`\`bash
+		```bash
 		ng deploy --base-href://<nombre de usuario>.github.io/<nonbre del proyecto>/
-		\`\`\`
+		```
 		
-	una vez se haya desplegado la aplicaión dirijase al repositorio de github y el a sección setting ir a pages y al inicio de la pagina estará la url de la aplicaión.
+* Una vez se haya desplegado la aplicación diríjase al repositorio de GitHub y en la sección setting ir a pages y al inicio de la página estará la url de la aplicación.
+		
+	
