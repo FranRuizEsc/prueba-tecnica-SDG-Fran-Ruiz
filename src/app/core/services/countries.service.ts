@@ -67,15 +67,11 @@ export class CountriesService {
       'population',
     ]).pipe(
       map((countries) => {
-        if (subregion === 'South America') {
-          return countries.filter(
-            (country) => country.subregion === 'South America'
-          );
-        } else {
-          return countries.filter(
-            (country) => country.subregion !== 'South America'
-          );
-        }
+        return countries.filter((country) =>
+          subregion === 'South America'
+            ? country.subregion === 'South America'
+            : country.subregion !== 'South America'
+        );
       })
     );
   }

@@ -39,10 +39,10 @@ export class ContinentDetailsComponent {
         this.getAmericanCountriesPopulation(this.continent());
         break;
       case 'all':
-        this.getContinentPopulationData();
+        this.getContinentsPopulationData();
         break;
       default:
-        this.getPopulationData();
+        this.getCountriesPopulationData();
     }
   }
 
@@ -50,7 +50,7 @@ export class ContinentDetailsComponent {
     this.filteredCountries = event;
   }
 
-  private getContinentPopulationData() {
+  private getContinentsPopulationData() {
     this.countriesService.getPopulationByContinent().subscribe((continent) => {
       this.countriesPopulationData = continent.sort((a, b) =>
         a.name.localeCompare(b.name)
@@ -60,7 +60,7 @@ export class ContinentDetailsComponent {
     });
   }
 
-  private getPopulationData() {
+  private getCountriesPopulationData() {
     this.countriesService
       .getFilteredCountriesByRegion(this.continent(), ['name', 'population'])
       .subscribe((countries) => {
