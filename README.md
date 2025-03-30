@@ -1,38 +1,38 @@
-## Descripción
+## Description
 
-Proyecto creado con Angular 19 para prueba técnica de SDG Group. 
-Es una aplicación que muestra la población de los países por continente y permite filtrarlo por rango de población.
+Project created with Angular 19 for SDG Group technical test.  
+It is an application that shows the population of countries by continent and allows filtering by population range.
 
-Eeste es el enlace a la aplicacion [https://franruizesc.github.io/prueba-tecnica-SDG-Fran-Ruiz/](https://franruizesc.github.io/prueba-tecnica-SDG-Fran-Ruiz/)
+The application is deployed and can be seen in the [app link](https://franruizesc.github.io/prueba-tecnica-SDG-Fran-Ruiz/)
 
-## Tecnologías Utilizadas
+## Technologies Used
 
 * Angular 19.0.4
 * Angular CDK 19.2.7
 * Jest 1.19.0
 * Bootstrap/SCSS
 * Highcharts 12.1.2
-* ng-mocks 14.13.6 para los unit test con Jest
+* ng-mocks 14.13.6 for unit tests with Jest.
 * node.js 22.12.0
 
-## Instalación
+## Installation
 
-1.  Clona el repositorio:
+1.  Clone the repository:
 
     ```bash
     git clone https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz.git
     ```
 
-2.  Descargar node desde [página oficial de node](https://nodejs.org/en/download) e instalar la ultima version estable, mínimo la 18.19.1.
+2.  Download node from [node official website](https://nodejs.org/en/download) and install the latest stable version, at least 18.19.1.
 
 
-3.  Instalar última versión de Angular:
+3.  Install last Angular version:
    
     ```bash
     npm install @angular/cli@latest
     ```
 
-4.  Instala las dependencias:
+4.  Install dependencies:
 
     ```bash
     npm install
@@ -41,25 +41,25 @@ Eeste es el enlace a la aplicacion [https://franruizesc.github.io/prueba-tecnica
     
 
 
-## Ejecución
+## Execution
 
-Para ejecutar la aplicación en modo de desarrollo:
+* To run the application in development mode:
 
 ```bash
 ng serve
  ```
 
-La aplicación estará disponible en \`http://localhost:4200/\`.
+* The application is available in \`http://localhost:4200/\`.
 
 ## Pruebas (Tests)
 
-Para ejecutar las pruebas unitarias con Jest:
+* To run unit tests with Jest:
 
 ```bash
 npm test
 ```
 
-Ejemplo de un test:
+* Example of a test:
 
 ```typescript
 // src/app/components/main-page/main-page.spec.ts
@@ -97,7 +97,7 @@ describe('NavbarComponent', () => {
 });
 ```
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 	src
@@ -203,75 +203,75 @@ describe('NavbarComponent', () => {
 	 ┗ styles.scss
 ```
 
-## El proyecto se compone de varias carpetas: 
-* <ins>***components***</ins>: En esta carpeta se encuentran los componentes principales de la aplicación:
-	- <ins>***continents***</ins>: Contiene las vistas de cada continente que se muestran al navegar a ellas a trabes del menú o de las miniaturas de main-page.
-	- <ins>***main-page***</ins>: Es la página principal del proyecto.
+## The project consists of several folders: 
+* <ins>***components***</ins>: This folder contains the main components of the application:
+	- <ins>***continents***</ins>: Contains the views of each continent that are displayed when navigating to them through the menu or main-page thumbnails.
+	- <ins>***main-page***</ins>: This is the main page of the project.
 
-* <ins>***core***</ins>: Contiene los servicios y modelos principales de la app: 
-	- <ins>***models***</ins>: Son las interfaces usadas.
-	- <ins>***services***</ins>: Contiene el servicio en el que se hacen las peticiones a la API y maneja los datos.
+* <ins>***core***</ins>: Contains the app's main services and models: 
+	- <ins>***models***</ins>: In this case have the interfaces.
+	- <ins>***services***</ins>: It contains the service in which the API requests are made and handles the data.
 	
-*  <ins>***shared***</ins>: Es la carpeta en la que se encuentran los elementos comunes para los componentes principales y poderlos reutilizar sin repetir código.
-	- <ins>***components***</ins>: Son los componentes comunes donde se muestran los datos que se utilizan en los componentes principales.
-	- <ins>***services***</ins>: Aquí está el chart-config que se encarga de la configuración de las charts.
+*  <ins>***shared***</ins>: This is the folder where the common elements for the main components are located and can be reused without repeating code.
+	- <ins>***components***</ins>: These are the common components where the data used in the main components are displayed.
+	- <ins>***services***</ins>: Here is the chart-config that takes care of the chart configuration.
 	
-*  <ins>***assets***</ins>: Contiene las imágenes utilizadas en la aplicación.
+*  <ins>***assets***</ins>: Contains the images used in the application.
 	
 	
-## Funcionalidades Destacadas
-* <ins>***Pantalla de inicio***</ins>: muestra una gráfica con la población de cada continente. También muestra unas cards con la misma información. Al clickar sobre la tarjeta navegará al continente seleccionado.
+## Featured Functionalities
+* <ins>***Init page***</ins>: shows a graph with the population of each continent. It also displays cards with the same information. Clicking on the card navigates to the selected continent.
 
 ![home](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/243a3a644414529aecfd30186984cdebba97b9d8/home.jpg)
 
 
-* <ins>***Menu de navegación***</ins>: permite navegar entre los distintos continentes. El seleccionar uno se resalta el seleccionado con un color, en este caso el morado.
+* <ins>***Navigation menu***</ins>: allows you to navigate between the different continents. When you select one, the selected one is highlighted with a color, in this case purple.
 
 ![navbar](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/30e1909ae15490ff4e7fa191e6b41ede5e2a5e3d/navbar.jpg)
 
-* <ins>***Filtro***</ins>: permite introducir un rango de población, esto actualiza la vista mostrando solo los continentes o países que estén dentro de ese rango.
+* <ins>***Filter***</ins>: allows you to enter a population range, this updates the view showing only the continents or countries that fall within that range.
 
 ![filter](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/30e1909ae15490ff4e7fa191e6b41ede5e2a5e3d/filters.jpg)
 
 ![filtered](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/30e1909ae15490ff4e7fa191e6b41ede5e2a5e3d/filter.jpg)
 
-* <ins>***Validación de inputs***</ins>: no permite introducir un mínimo igual o menor que el mayor. Se muestra un mensaje error indicándolo.
+* <ins>***Inputs validation***</ins>: does not allow you to enter a minimum equal to or less than the largest. An error message appears indicating this.
   
-* <ins>***Vista detalle***</ins>: muestra una gráfica con la población por paises del continente correspondiente.
+* <ins>***Detail view***</ins>: shows a graph with the population by country of the corresponding continent.
 
 ![continent](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/30e1909ae15490ff4e7fa191e6b41ede5e2a5e3d/africa.jpg)
 
-* <ins>***Not found***</ins>: se muestra cuando no hay resultados al filtrar..
+* <ins>***Not found***</ins>: displayed when there are no results when filtering.
 
 ![not found](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/30e1909ae15490ff4e7fa191e6b41ede5e2a5e3d/notFound.jpg)
 
-## Despliegue
+## Deployment
 
-* Para desplegar la aplicación he usado angular-cli-ghpages que permite el desplegue en github pages
+* To deploy the application I used angular-cli-ghpages which allows the deployment in github pages.
 	
-* Instalación: 
+* Instalation: 
 
 ```bash
 npm i angular-cli-ghpages
 ng add angular-cli-ghpages
 ```
 		
-* Implementación en gh-pages: 
+* Implementation with gh-pages: 
 	
 ```bash
-ng deploy --base-href://<nombre de usuario>.github.io/<nonbre del proyecto>/
+ng deploy --base-href://<user name>.github.io/<project name>/
 ```
 		
-* Una vez se haya desplegado la aplicación diríjase al repositorio de GitHub y en la sección setting ir a pages y al inicio de la página estará la url de la aplicación.
+* Once the application is deployed go to the GitHub repository and in the configuration section go to pages and at the top of the page will be the url of the application.
 		
 	
-## Metodología de ágil para el desarrollo: 
+## Agile methodology for development:
 
-* Para la organización de las tareas durante el desarrollo, utilicé [Jira](https://franruizes.atlassian.net/jira/software/projects/SDG/boards/3).
+* For the organization of the tasks during the development, I used [Jira](https://franruizes.atlassian.net/jira/software/projects/SDG/boards/3).
 
-* En el tablón hay 5 columnas: 
-	- TODO: Es donde creo todas las tareas por hacer durante el desarrollo de la aplicación.
-	- IN PROGRESS: cuando la tarea está en desarrollo.
-	- QA: realizo una prueba de la aplicación para comprobar que todo funciona correctamente después del desarrollo.
-	- READY TO MERGE: una vez pasado QA creo una PR donde reviso el código nuevo implementado para prevenir errores.
-	- DONE: la tarea ya está mergeada con development.
+* The board has 5 columns:
+	- TODO: This is where I create all the tasks to be performed during the development of the application.
+	- IN PROGRESS: when the task is in development.
+	- QA: I perform a test of the application to check that everything works correctly after development.
+	- READY TO MERGE: once QA is passed I create a PR where I review the newly implemented code to prevent bugs.
+	- DONE: the task is already merged with development.
