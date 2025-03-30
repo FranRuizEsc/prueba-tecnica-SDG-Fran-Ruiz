@@ -33,10 +33,10 @@ export class ContinentDetailsComponent {
 
     switch (this.continent()) {
       case 'North America':
-        this.getNorthAmericaPopulation();
+        this.getAmericanCountriesPopulation(this.continent());
         break;
       case 'South America':
-        this.getSouthAmericaPopulation();
+        this.getAmericanCountriesPopulation(this.continent());
         break;
       case 'all':
         this.getContinentPopulationData();
@@ -69,18 +69,9 @@ export class ContinentDetailsComponent {
       });
   }
 
-  private getNorthAmericaPopulation() {
+  private getAmericanCountriesPopulation(continent: string) {
     this.countriesService
-      .getNorthAmericanCountries()
-      .subscribe((countries: ICountryByRegionInfo[]) => {
-        this.transformCountriesData(countries);
-        this.isLoading = false;
-      });
-  }
-
-  private getSouthAmericaPopulation() {
-    this.countriesService
-      .getSouthAmericanCountries()
+      .getAmericanBySubregionCountries(continent)
       .subscribe((countries: ICountryByRegionInfo[]) => {
         this.transformCountriesData(countries);
         this.isLoading = false;
