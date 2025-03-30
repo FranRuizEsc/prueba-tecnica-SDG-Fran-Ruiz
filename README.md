@@ -13,7 +13,7 @@ Eeste es el enlace a la aplicacion [https://franruizesc.github.io/prueba-tecnica
 * Bootstrap/SCSS
 * Highcharts 12.1.2
 * ng-mocks 14.13.6 para los unit test con Jest
-* nodeJs 22.12.0
+* node.js 22.12.0
 
 ## Instalación
 
@@ -23,11 +23,23 @@ Eeste es el enlace a la aplicacion [https://franruizesc.github.io/prueba-tecnica
     git clone https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz.git
     ```
 
-2.  Instala las dependencias:
+2.  Descargar node desde [página oficial de node](https://nodejs.org/en/download) e instalar la ultima version estable, mínimo la 18.19.1.
+
+
+3.  Instalar última versión de Angular:
+   
+    ```bash
+    npm install @angular/cli@latest
+    ```
+
+4.  Instala las dependencias:
 
     ```bash
     npm install
     ```
+
+    
+
 
 ## Ejecución
 
@@ -192,26 +204,44 @@ describe('NavbarComponent', () => {
 ```
 
 ## El proyecto se compone de varias carpetas: 
-* ***components***: En esta carpeta se encuentran los componentes principales de la aplicación:
-	- ***continents***: Contiene las vistas de cada continente que se muestran al navegar a ellas a trabes del menú o de las miniaturas de main-page.
-	- ***main-page*** Es la página principal del proyecto.
+* <ins>***components***</ins>: En esta carpeta se encuentran los componentes principales de la aplicación:
+	- <ins>***continents***</ins>: Contiene las vistas de cada continente que se muestran al navegar a ellas a trabes del menú o de las miniaturas de main-page.
+	- <ins>***main-page***</ins>: Es la página principal del proyecto.
 
-* **core**: Contiene los servicios y modelos principales de la app: 
-	- ***models***: Son las interfaces usadas.
-	- ***services***: Contiene el servicio en el que se hacen las peticiones a la API y maneja los datos.
+* <ins>***core***</ins>: Contiene los servicios y modelos principales de la app: 
+	- <ins>***models***</ins>: Son las interfaces usadas.
+	- <ins>***services***</ins>: Contiene el servicio en el que se hacen las peticiones a la API y maneja los datos.
 	
-*  ***shared***: Es la carpeta en la que se encuentran los elementos comunes para los componentes principales y poderlos reutilizar sin repetir código.
-	- ***components***: Son los componentes comunes donde se muestran los datos que se utilizan en los componentes principales.
-	- ***services***: Aquí está el chart-config que se encarga de la configuración de las charts.
+*  <ins>***shared***</ins>: Es la carpeta en la que se encuentran los elementos comunes para los componentes principales y poderlos reutilizar sin repetir código.
+	- <ins>***components***</ins>: Son los componentes comunes donde se muestran los datos que se utilizan en los componentes principales.
+	- <ins>***services***</ins>: Aquí está el chart-config que se encarga de la configuración de las charts.
 	
-*  ***assets***: Contiene las imágenes utilizadas en la aplicación.
+*  <ins>***assets***</ins>: Contiene las imágenes utilizadas en la aplicación.
 	
 	
 ## Funcionalidades Destacadas
+* <ins>***Pantalla de inicio***</ins>: muestra una gráfica con la población de cada continente. También muestra unas cards con la misma información. Al clickar sobre la tarjeta navegará al continente seleccionado.
 
-* El menú situado en el navbar permite navegar entre los distintos continentes. El seleccionar uno se resalta el seleccionado con un color, en este caso el morado.
-* El filtro que se muestra en la pantalla permite introducir un rango de población, esto actualiza la vista mostrando solo los continentes o países que estén dentro de ese rango.
-* Cada vista muestra una gráfica con la población por paises del continente correspondiente.
+![home](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/243a3a644414529aecfd30186984cdebba97b9d8/home.jpg)
+
+
+* <ins>***Menu de navegación***</ins>: permite navegar entre los distintos continentes. El seleccionar uno se resalta el seleccionado con un color, en este caso el morado.
+
+![navbar](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/30e1909ae15490ff4e7fa191e6b41ede5e2a5e3d/navbar.jpg)
+
+* <ins>***Filtro***</ins>: permite introducir un rango de población, esto actualiza la vista mostrando solo los continentes o países que estén dentro de ese rango.
+
+![filter](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/30e1909ae15490ff4e7fa191e6b41ede5e2a5e3d/filters.jpg)
+
+![filtered](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/30e1909ae15490ff4e7fa191e6b41ede5e2a5e3d/filter.jpg)
+  
+* <ins>***Vista detalle***</ins>: muestra una gráfica con la población por paises del continente correspondiente.
+
+![continent](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/30e1909ae15490ff4e7fa191e6b41ede5e2a5e3d/africa.jpg)
+
+* <ins>***Not found***</ins>: se muestra cuando no hay resultados al filtrar..
+
+![not found](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/30e1909ae15490ff4e7fa191e6b41ede5e2a5e3d/notFound.jpg)
 
 ## Despliegue
 
