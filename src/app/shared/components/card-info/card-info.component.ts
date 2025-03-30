@@ -35,25 +35,25 @@ export class CardInfoComponent {
       let photoUrl = '';
       switch (element.name) {
         case 'Africa':
-          photoUrl = '/africa.png';
+          photoUrl = 'assets/africa.png';
           break;
         case 'Antarctica':
-          photoUrl = '/antarctic.png';
+          photoUrl = 'assets/antarctic.png';
           break;
         case 'Asia':
-          photoUrl = '/asia.png';
+          photoUrl = 'assets/asia.png';
           break;
         case 'Europe':
-          photoUrl = '/europe.png';
+          photoUrl = 'assets/europe.png';
           break;
         case 'North America':
-          photoUrl = '/northAmerica.png';
+          photoUrl = 'assets/northAmerica.png';
           break;
         case 'Oceania':
-          photoUrl = '/oceania.png';
+          photoUrl = 'assets/oceania.png';
           break;
         case 'South America':
-          photoUrl = '/southAmerica.png';
+          photoUrl = 'assets/southAmerica.png';
           break;
       }
 
