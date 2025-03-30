@@ -234,6 +234,8 @@ describe('NavbarComponent', () => {
 ![filter](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/30e1909ae15490ff4e7fa191e6b41ede5e2a5e3d/filters.jpg)
 
 ![filtered](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/30e1909ae15490ff4e7fa191e6b41ede5e2a5e3d/filter.jpg)
+
+* <ins>***Validación de inputs***</ins>: no permite introducir un mínimo igual o menor que el mayor. Se muestra un mensaje error indicándolo.
   
 * <ins>***Vista detalle***</ins>: muestra una gráfica con la población por paises del continente correspondiente.
 
