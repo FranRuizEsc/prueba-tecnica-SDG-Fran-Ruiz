@@ -1,3 +1,5 @@
+$max-width: 1050px;
+
 .filters-container {
   display: flex;
   flex-direction: column;
@@ -23,7 +25,7 @@
         width: 400px;
       }
 
-      @media (max-width: 1050px) {
+      @media (max-width: $max-width) {
         flex-direction: column;
       }
     }
@@ -36,6 +38,12 @@
 
       .btn {
         letter-spacing: 1.25px;
+        font-weight: bold;
+      }
+
+      .btn-success {
+        background-color: #6ba955;
+        border: none;
       }
 
       .disabled-button {
@@ -44,12 +52,12 @@
         background-color: #8d8d8d;
       }
 
-      @media (max-width: 1050px) {
+      @media (max-width: $max-width) {
         justify-content: center;
       }
     }
 
-    @media (max-width: 1050px) {
+    @media (max-width: $max-width) {
       flex-direction: column;
     }
   }
