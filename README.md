@@ -56,7 +56,7 @@ La aplicación estará disponible en \`http://localhost:4200/\`.
 Para ejecutar las pruebas unitarias con Jest:
 
 ```bash
-ng test
+npm test
 ```
 
 Ejemplo de un test:
