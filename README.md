@@ -192,19 +192,19 @@ describe('NavbarComponent', () => {
 ```
 
 ## El proyecto se compone de varias carpetas: 
-* components En esta carpeta se encuentran los componentes principales de la aplicación:
-	- continents: Contiene las vistas de cada continente que se muestran al navegar a ellas a trabes del menú o de las miniaturas de main-page.
-	- main-page Es la página principal del proyecto.
+* ***components***: En esta carpeta se encuentran los componentes principales de la aplicación:
+	- ***continents***: Contiene las vistas de cada continente que se muestran al navegar a ellas a trabes del menú o de las miniaturas de main-page.
+	- ***main-page*** Es la página principal del proyecto.
 
-* core: Contiene los servicios y modelos principales de la app: 
-	- models: Son las interfaces usadas.
-	- services: Contiene el servicio en el que se hacen las peticiones a la API y maneja los datos.
+* **core**: Contiene los servicios y modelos principales de la app: 
+	- ***models***: Son las interfaces usadas.
+	- ***services***: Contiene el servicio en el que se hacen las peticiones a la API y maneja los datos.
 	
-*  shared: Es la carpeta en la que se encuentran los elementos comunes para los componentes principales y poderlos reutilizar sin repetir código.
-	- components: Son los componentes comunes donde se muestran los datos que se utilizan en los componentes principales.
-	- services: Aquí está el chart-config que se encarga de la configuración de las charts.
+*  ***shared***: Es la carpeta en la que se encuentran los elementos comunes para los componentes principales y poderlos reutilizar sin repetir código.
+	- ***components***: Son los componentes comunes donde se muestran los datos que se utilizan en los componentes principales.
+	- ***services***: Aquí está el chart-config que se encarga de la configuración de las charts.
 	
-*  assets: Contiene las imágenes utilizadas en la aplicación.
+*  ***assets***: Contiene las imágenes utilizadas en la aplicación.
 	
 	
 ## Funcionalidades Destacadas
