@@ -58,27 +58,21 @@ export class CountriesService {
     );
   }
 
-  getNorthAmericanCountries(): Observable<ICountryByRegionInfo[]> {
+  getAmericanBySubregionCountries(
+    subregion: string
+  ): Observable<ICountryByRegionInfo[]> {
     return this.getFilteredCountriesByRegion('Americas', [
       'name',
       'subregion',
       'population',
     ]).pipe(
-      map((countries) =>
-        countries.filter((country) => country.subregion !== 'South America')
-      )
-    );
-  }
-
-  getSouthAmericanCountries(): Observable<ICountryByRegionInfo[]> {
-    return this.getFilteredCountriesByRegion('Americas', [
-      'name',
-      'subregion',
-      'population',
-    ]).pipe(
-      map((countries) =>
-        countries.filter((country) => country.subregion === 'South America')
-      )
+      map((countries) => {
+        return countries.filter((country) =>
+          subregion === 'South America'
+            ? country.subregion === 'South America'
+            : country.subregion !== 'South America'
+        );
+      })
     );
   }
 

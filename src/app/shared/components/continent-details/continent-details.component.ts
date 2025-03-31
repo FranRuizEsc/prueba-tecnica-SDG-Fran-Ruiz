@@ -33,16 +33,16 @@ export class ContinentDetailsComponent {
 
     switch (this.continent()) {
       case 'North America':
-        this.getNorthAmericaPopulation();
+        this.getAmericanCountriesPopulation(this.continent());
         break;
       case 'South America':
-        this.getSouthAmericaPopulation();
+        this.getAmericanCountriesPopulation(this.continent());
         break;
       case 'all':
-        this.getContinentPopulationData();
+        this.getContinentsPopulationData();
         break;
       default:
-        this.getPopulationData();
+        this.getCountriesPopulationData();
     }
   }
 
@@ -50,7 +50,7 @@ export class ContinentDetailsComponent {
     this.filteredCountries = event;
   }
 
-  private getContinentPopulationData() {
+  private getContinentsPopulationData() {
     this.countriesService.getPopulationByContinent().subscribe((continent) => {
       this.countriesPopulationData = continent.sort((a, b) =>
         a.name.localeCompare(b.name)
@@ -60,27 +60,18 @@ export class ContinentDetailsComponent {
     });
   }
 
-  private getPopulationData() {
+  private getCountriesPopulationData() {
     this.countriesService
       .getFilteredCountriesByRegion(this.continent(), ['name', 'population'])
-      .subscribe((countries) => {
-        this.transformCountriesData(countries);
-        this.isLoading = false;
-      });
-  }
-
-  private getNorthAmericaPopulation() {
-    this.countriesService
-      .getNorthAmericanCountries()
       .subscribe((countries: ICountryByRegionInfo[]) => {
         this.transformCountriesData(countries);
         this.isLoading = false;
       });
   }
 
-  private getSouthAmericaPopulation() {
+  private getAmericanCountriesPopulation(continent: string) {
     this.countriesService
-      .getSouthAmericanCountries()
+      .getAmericanBySubregionCountries(continent)
       .subscribe((countries: ICountryByRegionInfo[]) => {
         this.transformCountriesData(countries);
         this.isLoading = false;
