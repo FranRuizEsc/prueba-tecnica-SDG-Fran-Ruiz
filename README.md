@@ -59,34 +59,39 @@ ng serve
 npm test
 ```
 
-* Example of a test:
+* Example of a component test:
 
 ```typescript
-// src/app/components/main-page/main-page.spec.ts
+// src/app/shared/components/continente-details.component.spec.ts
 
-import { provideHttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavbarComponent } from './navbar.component';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { MockProvider } from 'ng-mocks';
-import { ActivatedRoute } from '@angular/router';
+import { ContinentDetailsComponent } from './continent-details.component';
+import { of } from 'rxjs';
+import { CountriesService } from '../../../core/services/countries.service';
 
-describe('NavbarComponent', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
+describe('ContinentDetailsComponent', () => {
+  let component: ContinentDetailsComponent;
+  let fixture: ComponentFixture<ContinentDetailsComponent>;
+  let countriesService: CountriesService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavbarComponent],
+      imports: [ContinentDetailsComponent],
       providers: [
-        provideHttpClient(),
-        provideHttpClientTesting(),
-        MockProvider(ActivatedRoute),
+        {
+          provide: CountriesService,
+          useValue: {
+            getPopulationByContinent: () => of([{}]),
+            getFilteredCountriesByRegion: () => of([{}]),
+            getAmericanBySubregionCountries: () => of([{}]),
+          },
+        },
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NavbarComponent);
+    countriesService = TestBed.inject(CountriesService);
+    fixture = TestBed.createComponent(ContinentDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -94,7 +99,223 @@ describe('NavbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('getContinentsPopulationData() should obtain and sort the population data for the continent.', () => {
+    const mockContinentData = [
+      { name: 'Europe', value: 500 },
+      { name: 'Asia', value: 1000 },
+      { name: 'Africa', value: 200 },
+    ];
+
+    const sortedContinentData = [
+      { name: 'Africa', value: 200 },
+      { name: 'Asia', value: 1000 },
+      { name: 'Europe', value: 500 },
+    ];
+
+    jest
+      .spyOn(countriesService, 'getPopulationByContinent')
+      .mockReturnValue(of(mockContinentData));
+
+    component['getContinentsPopulationData']();
+
+    expect(component['countriesPopulationData']).toEqual(sortedContinentData);
+    expect(component['filteredCountries']).toEqual(sortedContinentData);
+    expect(component['isLoading']).toBe(false);
+  });
+
+  it('getCountriesPopulationData() should obtain and transform countries population data', () => {
+    const spyTransformCountriesData = jest.spyOn(
+      component as any,
+      'transformCountriesData'
+    );
+    jest.spyOn(component, 'continent').mockReturnValue('Africa');
+    const mockCountries = [
+      { name: 'Niger', population: 1000 },
+      { name: 'Congo', population: 2000 },
+    ];
+
+    jest
+      .spyOn(countriesService, 'getFilteredCountriesByRegion')
+      .mockReturnValue(of(mockCountries) as any);
+
+    component['getCountriesPopulationData']();
+
+    expect(countriesService.getFilteredCountriesByRegion).toHaveBeenCalledWith(
+      'Africa',
+      ['name', 'population']
+    );
+    expect(spyTransformCountriesData).toHaveBeenCalledWith(mockCountries);
+  });
+
+  it('getAmericanCountriesPopulation() should obtain and transform countries population data', () => {
+    const spyTransformCountriesData = jest.spyOn(
+      component as any,
+      'transformCountriesData'
+    );
+    const mockCountries = [
+      { name: 'Mexico', population: 1000, subregion: 'South America' },
+      { name: 'Canada', population: 2000, subregion: 'North America' },
+    ];
+
+    jest
+      .spyOn(countriesService, 'getAmericanBySubregionCountries')
+      .mockReturnValue(of(mockCountries) as any);
+
+    component['getAmericanCountriesPopulation']('South America');
+
+    expect(
+      countriesService.getAmericanBySubregionCountries
+    ).toHaveBeenCalledWith('South America');
+    expect(spyTransformCountriesData).toHaveBeenCalledWith(mockCountries);
+  });
 });
+
+```
+
+* Example of a service test:
+
+```typescript
+// src/app/core/services/countries.service.spec.ts
+
+import { TestBed } from '@angular/core/testing';
+import { CountriesService } from './countries.service';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
+import { of } from 'rxjs';
+
+describe('CountriesService', () => {
+  let service: CountriesService;
+  let httpTestingController: HttpTestingController;
+  let httpClient: HttpClient;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+    });
+    service = TestBed.inject(CountriesService);
+    httpTestingController = TestBed.inject(HttpTestingController);
+    httpClient = TestBed.inject(HttpClient);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('getFilteredCountriesInfo() should return the correct request', () => {
+    service.getFilteredCountriesInfo(['region']).subscribe();
+
+    const expectUrl = 'https://restcountries.com/v3.1/all?fields=region';
+    const req = httpTestingController.expectOne(expectUrl);
+
+    expect(req.request.method).toEqual('GET');
+  });
+
+  it('getFilteredCountriesByRegion() should return the correct request', () => {
+    service.getFilteredCountriesByRegion('europe', ['region']).subscribe();
+
+    const expectUrl =
+      'https://restcountries.com/v3.1/region/europe?fields=region';
+    const req = httpTestingController.expectOne(expectUrl);
+
+    expect(req.request.method).toEqual('GET');
+  });
+
+  it('getPopulationByContinent() should calculate population by continent correctly', (done) => {
+    const mockCountries = [
+      { continents: ['Asia'], population: 1000 },
+      { continents: ['Europe', 'Asia'], population: 500 },
+      { continents: ['Europe'], population: 200 },
+    ];
+
+    const expectedResult = [
+      { name: 'Asia', value: 1500 },
+      { name: 'Europe', value: 700 },
+    ];
+
+    jest
+      .spyOn(service, 'getFilteredCountriesInfo')
+      .mockReturnValue(of(mockCountries));
+
+    service.getPopulationByContinent().subscribe((result) => {
+      expect(result).toEqual(expectedResult);
+      done();
+    });
+  });
+
+  describe('getAmericanBySubregionCountries', () => {
+    const mockCountries = [
+      { name: 'Argentina', subregion: 'South America', population: 123331 },
+      { name: 'Canada', subregion: 'North America', population: 877634 },
+      { name: 'Brazil', subregion: 'South America', population: 9087239847 },
+      {
+        name: 'Mexico',
+        subregion: 'Central America',
+        population: 777299823723,
+      },
+    ];
+    it('should filter countries by South America subregion', (done) => {
+      const expectedResult = [
+        { name: 'Argentina', subregion: 'South America', population: 123331 },
+        { name: 'Brazil', subregion: 'South America', population: 9087239847 },
+      ];
+
+      jest
+        .spyOn(service, 'getFilteredCountriesByRegion')
+        .mockReturnValue(of(mockCountries) as any);
+
+      service
+        .getAmericanBySubregionCountries('South America')
+        .subscribe((result) => {
+          expect(result).toEqual(expectedResult);
+          done();
+        });
+    });
+
+    it('should filter countries by non-South America subregions', (done) => {
+      const expectedResult = [
+        { name: 'Canada', subregion: 'North America', population: 877634 },
+        {
+          name: 'Mexico',
+          subregion: 'Central America',
+          population: 777299823723,
+        },
+      ];
+
+      jest
+        .spyOn(service, 'getFilteredCountriesByRegion')
+        .mockReturnValue(of(mockCountries) as any);
+
+      service.getAmericanBySubregionCountries('Other').subscribe((result) => {
+        expect(result).toEqual(expectedResult);
+        done();
+      });
+    });
+  });
+
+  it('transformMapToArray() should sort the array alphabetically by continent name', () => {
+    const continentMap = new Map<string, number>([
+      ['Zambia', 100],
+      ['Argentina', 200],
+      ['Brazil', 300],
+    ]);
+
+    const expectedResult = [
+      { name: 'Argentina', value: 200 },
+      { name: 'Brazil', value: 300 },
+      { name: 'Zambia', value: 100 },
+    ];
+
+    const result = service['transformMapToArray'](continentMap);
+
+    expect(result).toEqual(expectedResult);
+  });
+});
+
+
 ```
 
 ## Project Structure
@@ -244,6 +465,10 @@ describe('NavbarComponent', () => {
 * <ins>***Not found***</ins>: displayed when there are no results when filtering.
 
 ![not found](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/30e1909ae15490ff4e7fa191e6b41ede5e2a5e3d/notFound.jpg)
+
+* <ins>***Small resolution***</ins>: it is compatible with small screen resolutions but not yet with the mobile version.
+
+![samll resolution](https://github.com/FranRuizEsc/prueba-tecnica-SDG-Fran-Ruiz/blob/539c5bead0f64b240cdf62035147de791afc8709/smallResolution.jpg)
 
 ## Deployment
 
