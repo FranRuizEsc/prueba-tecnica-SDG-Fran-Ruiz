@@ -63,7 +63,7 @@ export class ContinentDetailsComponent {
   private getCountriesPopulationData() {
     this.countriesService
       .getFilteredCountriesByRegion(this.continent(), ['name', 'population'])
-      .subscribe((countries) => {
+      .subscribe((countries: ICountryByRegionInfo[]) => {
         this.transformCountriesData(countries);
         this.isLoading = false;
       });
